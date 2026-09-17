@@ -8,13 +8,11 @@ import (
 
 func main() {
 
-	// Simple GET Request...
-	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		fmt.Fprintln(w, "Welcome to the Our backend server!")
-	})
+	taskHandler := handler.NewTaskHandlers()
 
-	// Request using handlers...
-	http.HandleFunc("/health", handler.Health)
+	http.HandleFunc("/", taskHandler.Home)
+
+	http.HandleFunc("/health", taskHandler.Health)
 
 	fmt.Println("Server is running on :8080")
 
