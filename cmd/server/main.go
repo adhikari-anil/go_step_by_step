@@ -2,17 +2,19 @@ package main
 
 import (
 	"fmt"
+	"go-curd/internal/handler"
 	"net/http"
 )
 
 func main() {
+
+	// Simple GET Request...
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		fmt.Fprintln(w, "Welcome to Task API")
+		fmt.Fprintln(w, "Welcome to the Our backend server!")
 	})
 
-	http.HandleFunc("/health", func(w http.ResponseWriter, r *http.Request) {
-		fmt.Fprintln(w, "OK")
-	})
+	// Request using handlers...
+	http.HandleFunc("/health", handler.Health)
 
 	fmt.Println("Server is running on :8080")
 
